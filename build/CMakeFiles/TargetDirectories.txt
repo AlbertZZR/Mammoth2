@@ -1,0 +1,4 @@
+D:/cpp_ws/Mammoth2/build/CMakeFiles/ALL_BUILD.dir
+D:/cpp_ws/Mammoth2/build/CMakeFiles/ZERO_CHECK.dir
+D:/cpp_ws/Mammoth2/build/samples/CMakeFiles/sample1.dir
+D:/cpp_ws/Mammoth2/build/samples/CMakeFiles/sample2.dir

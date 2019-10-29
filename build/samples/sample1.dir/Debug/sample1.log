@@ -1,0 +1,10 @@
+﻿  Building Custom Rule D:/cpp_ws/Mammoth2/samples/CMakeLists.txt
+  CMake does not need to re-run because D:/cpp_ws/Mammoth2/build/samples/CMakeFiles/generate.stamp is up-to-date.
+  sample1.cpp
+D:\cpp_ws\Mammoth2\samples\sample1.cpp(16): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+D:\cpp_ws\Mammoth2\base\core.hpp(123): warning C4018: “<”: 有符号/无符号不匹配
+  D:\cpp_ws\Mammoth2\base\core.hpp(119): note: 编译类 模板 成员函数“void MBinaryPointCloud<MPoint2D>::print(void)”时
+  D:\cpp_ws\Mammoth2\samples\sample1.cpp(19): note: 参见对正在编译的函数 模板 实例化“void MBinaryPointCloud<MPoint2D>::print(void)”的引用
+  D:\cpp_ws\Mammoth2\samples\sample1.cpp(14): note: 参见对正在编译的类 模板 实例化“MBinaryPointCloud<MPoint2D>”的引用
+  sample1.vcxproj -> D:\cpp_ws\Mammoth2\build\samples\Debug\sample1.exe
+  sample1.vcxproj -> D:/cpp_ws/Mammoth2/build/samples/Debug/sample1.pdb (Full PDB)

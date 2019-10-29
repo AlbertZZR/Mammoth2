@@ -1,0 +1,1 @@
+set(APPS_BUILD_PATH ${PROJECT_SOURCE_DIR}/build/apps)

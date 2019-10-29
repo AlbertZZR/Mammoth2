@@ -1,6 +1,6 @@
 #pragma once
 
-#include"stdheaders.h"
+#include"std_header.h"
 
 using std::auto_ptr;
 using std::vector;

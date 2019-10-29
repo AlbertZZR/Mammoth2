@@ -1,0 +1,1 @@
+set(TESTS_BUILD_PATH ${PROJECT_SOURCE_DIR}/build/tests)

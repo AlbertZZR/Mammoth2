@@ -1,0 +1,27 @@
+cmake_minimum_required(VERSION 2.6)
+project(Mammoth2)
+
+set(APPS_BUILD_SWITCH OFF)
+set(SAMPLES_BUILD_SWITCH ON)
+set(TESTS_BUILD_SWITCH OFF)
+
+if(APPS_BUILD_SWITCH)
+	message("Apps building switch on")
+	add_subdirectory(apps apps)
+else(APPS_BUILD_SWITCH)
+	message("Apps building switch off")
+endif(APPS_BUILD_SWITCH)
+
+if(SAMPLES_BUILD_SWITCH)
+	message("Samples building switch on")
+	add_subdirectory(samples samples)
+else(SAMPLES_BUILD_SWITCH)
+	message("Samples building switch off")
+endif(SAMPLES_BUILD_SWITCH)
+
+if(TESTS_BUILD_SWITCH)
+	message("Tests building switch on")
+	add_subdirectory(tests tests)
+else(TESTS_BUILD_SWITCH)
+	message("Tests building switch off")
+endif(TESTS_BUILD_SWITCH)
