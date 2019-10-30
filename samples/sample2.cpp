@@ -1,25 +1,44 @@
-//Sample 1: Create point cloud and use passthrough filter
-//		  to select and delete points in point cloud.
+//Sample 2: Test opencv
 //
-#include"core.hpp"
-#include"preprocess.hpp"
-using namespace mammoth;
+#include "opencv_header.h"
+using namespace cv;
+using namespace std;
 int main() {
-	MBinaryPointCloud<MPoint3D> pointcloud_1(5, MPoint3D(0, 0, 0));
-	pointcloud_1.push_back(MPoint3D(1, 0, 0));
-	pointcloud_1.print();
-	PassthroughFilter<MPoint3D> filter_3D;
-	filter_3D(pointcloud_1, 0, 0, 0);
-	pointcloud_1.print();
-	MBinaryPointCloud<MPoint2D> pointcloud_2;
-	for (int i = 0; i <= 20; ++i) {
-		MPoint2D point(i, 20 - i);
-		pointcloud_2.push_back(point);
+	VideoCapture capture(0);
+	Mat rgb_pic;
+	Mat gray_pic;
+	Mat gauss_pic;
+	Mat edge_pic;
+	while (1) {
+		// Cap camera's picture
+		capture >> rgb_pic;
+		imshow("RGB pic", rgb_pic);
+		// Change to gray picture
+		cvtColor(rgb_pic, gray_pic, CV_BGR2GRAY);
+		imshow("Gray pic", gray_pic);
+		// Gauss filter
+    	blur(gray_pic, gauss_pic, Size(3,3));
+		imshow("Gauss pre-process pic", gauss_pic);
+		// Use Canny to find edges
+    	Canny(gauss_pic, edge_pic, 3, 9, 3);
+		imshow("Canny pic", edge_pic);
+		std::vector<Vec2f> lines;
+		// Hough transform
+		HoughLines(edge_pic, lines, 1, CV_PI / 180, 150);
+		for (Vec2f line : lines) {
+			float rho = line[0];
+			float theta = line[1];
+			cv::Point pt1, pt2;
+			double a = cos(theta), b = sin(theta);
+			double x0 = a*rho, y0 = b * rho;
+			pt1.x = cvRound(x0 + 1000 * (-b));
+			pt1.y = cvRound(y0 + 1000 * (a));
+			pt2.x = cvRound(x0 - 1000 * (-b));
+			pt2.y = cvRound(y0 - 1000 * (a));
+			cv::line(edge_pic, pt1, pt2, cv::Scalar(55, 100, 195), 1);
+		}
+		imshow("Houghline pic", edge_pic);
+		cvWaitKey(1);
 	}
-	pointcloud_2.print();
-	PassthroughFilter<MPoint2D> filter_2D;
-	filter_2D(pointcloud_2, 0, 8, -1);
-	pointcloud_2.print();
-	system("pause");
 	return 0;
 }

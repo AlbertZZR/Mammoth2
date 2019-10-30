@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 2.6)
-project(Mammoth2)
+cmake_minimum_required(VERSION 3.5)
+project(Mammoth2 C CXX)
 
 set(APPS_BUILD_SWITCH OFF)
 set(SAMPLES_BUILD_SWITCH ON)
