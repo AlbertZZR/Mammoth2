@@ -12,6 +12,10 @@ int main() {
 	while (1) {
 		// Cap camera's picture
 		capture >> rgb_pic;
+		rgb_pic.at<Vec3b>(100, 100) = Vec3f(0, 0, 0);
+		rgb_pic.at<Vec3b>(100, 101) = Vec3f(0, 0, 0);
+		rgb_pic.at<Vec3b>(101, 100) = Vec3f(0, 0, 0);
+		rgb_pic.at<Vec3b>(101, 101) = Vec3f(0, 0, 0);
 		imshow("RGB pic", rgb_pic);
 		// Change to gray picture
 		cvtColor(rgb_pic, gray_pic, CV_BGR2GRAY);

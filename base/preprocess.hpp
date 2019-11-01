@@ -1,6 +1,7 @@
 #pragma once
 
 #include"core.hpp"
+#include"pcl_header.h"
 
 namespace mammoth {
 	//_compare_type 0:equal -1:less-equal -2:less 1:greater-equal 2:greater
@@ -43,7 +44,7 @@ namespace mammoth {
 
 	//_compare_type 0:equal -1:less-equal -2:less 1:greater-equal 2:greater
 	template<class T>
-	class PassthroughFilter {
+	class MPassthroughFilter {
 	public:
 		void operator()(MBinaryPointCloud<T>& _in_pointcloud, int _in_fieldindex, float _in_value, int _compare_type) {
 			static MCompare<T> compare;
@@ -59,5 +60,24 @@ namespace mammoth {
 			}
 			_in_pointcloud.update_array_ptr(data_ptr);
 		}
+
+		void operator()(typename pcl::PointCloud<T>::Ptr& _in_pointcloud, int _in_fieldindex, float _in_bottomvalue, float _in_topvalue, bool _in_negative = false){
+			pcl::PassThrough<T> passThrough;
+			passThrough.setInputCloud(_in_pointcloud);
+			passThrough.setFilterLimitsNegative(_in_negative);
+			//0: x  1: y  2: z
+			if(_in_fieldindex == 0){
+				passThrough.setFilterFieldName("x");
+			}else if(_in_fieldindex == 1){
+				passThrough.setFilterFieldName("y");
+			}else if(_in_fieldindex == 2){
+				passThrough.setFilterFieldName("z");
+			}else{
+				return;
+			}
+			passThrough.setFilterLimits(_in_bottomvalue, _in_topvalue);
+			passThrough.filter(*_in_pointcloud);
+		}
 	};
+
 }
