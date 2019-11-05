@@ -2,6 +2,11 @@
 #include "preprocess.hpp"
 #include "glviewer.h"
 #include "mthread.hpp"
+#include "lidar.hpp"
+#include "pcl_header.h"
+#include "time_util.hpp"
+using namespace pcl;
+
 
 using namespace std;
 using namespace mammoth;
@@ -9,12 +14,13 @@ using namespace mammoth;
 void test1();
 void test2();
 void test3();
+void test4();
 
 int main(){
 	//test1();
 	//test2();
-	test3();
-	
+	//test3();
+	test4();
     return 0;
 }
 
@@ -74,7 +80,31 @@ void test3() {
 	Sleep(3000);
 	MThreadPool::join_thread("pic_thread");
 	MThreadPool::join_thread("pcd_thread");
-
 	MThreadPool::stop_thread("pcd_thread");
 	getchar();
+}
+
+void test4() {
+	string path = "C:\\20191105_test_vlp16point\\";
+	static glviewer::GLDevice* p_glviewer = nullptr;
+	if (p_glviewer == nullptr) {
+		p_glviewer = GetGLDevice(0, NULL, "Point Cloud Window");
+	}
+	p_glviewer->SetParam(glviewer::DeviceParams::POINT_SIZE, 1.0f);
+	PointCloud<PointXYZRGBA>::Ptr cloud(new PointCloud<PointXYZRGBA>());
+	M3DLidar lidar(MLIDAR_TYPE::VEL_VLP16);
+	int count = 0;
+	lidar.open();
+	while (true) {
+		char temp[10] = { 0 };
+		sprintf(temp, "%d.pcd", count);
+		std::string name = path + std::string(temp);
+		++count;
+		//cout << MTimeUtil::get_time_code_millsecond() << endl;
+		lidar.get_frame(cloud);
+		//cout << MTimeUtil::get_time_code_millsecond() << endl;
+		//pcl::io::savePCDFileBinary(name, *cloud);
+		p_glviewer->SetPointCloud(&((*cloud)[0]), cloud->size());
+		//cout << MTimeUtil::get_time_code_millsecond() << endl << endl;
+	}
 }

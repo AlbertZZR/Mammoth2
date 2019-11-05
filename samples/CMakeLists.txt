@@ -2,6 +2,9 @@ include(../dependencies/dependencies.cmake)
 
 include_directories(../base)
 include_directories(../dependencies)
+include_directories(../sensors)
+include_directories(../utils)
+include_directories(../extras/pointviewer/include/)
 
 set(SAMPLES_BUILD_PATH ${PROJECT_SOURCE_DIR}/build/samples)
 

@@ -8,9 +8,9 @@ set(PCL_ROOT_PATH C:/PCL1.8.0)
 set(PCAP_ROOT_PATH C:/WinPcap/WpdPack)
 
 # configure executable program switches
-set(APPS_BUILD_SWITCH OFF)
+set(APPS_BUILD_SWITCH ON)
 set(SAMPLES_BUILD_SWITCH OFF)
-set(TESTS_BUILD_SWITCH ON)
+set(TESTS_BUILD_SWITCH OFF)
 
 # configure extra-libs compile switch
 set(USE_EXTRA_SWITCH ON)

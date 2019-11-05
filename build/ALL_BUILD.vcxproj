@@ -165,9 +165,15 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
-    <ProjectReference Include="D:\cpp_ws\Mammoth2\build\tests\test.vcxproj">
-      <Project>{2EB2DE15-5D21-3788-8044-0EC3386884B7}</Project>
-      <Name>test</Name>
+    <ProjectReference Include="D:\cpp_ws\Mammoth2\build\apps\ObstacleCrossing.vcxproj">
+      <Project>{2A962974-B89A-326A-8B41-F01F21945DB3}</Project>
+      <Name>ObstacleCrossing</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="D:\cpp_ws\Mammoth2\build\apps\SlopEsimation.vcxproj">
+      <Project>{7522882E-D9BE-31D2-925B-FF52C2D3E316}</Project>
+      <Name>SlopEsimation</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
