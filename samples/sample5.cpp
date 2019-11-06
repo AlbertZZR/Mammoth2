@@ -1,7 +1,7 @@
 //Sample 5: Get online lidar-data and show
 //
 #include "std_header.h"
-#include "lidar.hpp"
+#include "mlidar.hpp"
 #include "mviewer.hpp"
 
 using namespace mammoth;

@@ -7,8 +7,19 @@ namespace mammoth{
     class MPcapUtil{
     public:
         static pcap_t* get_device(int _in_device_num = 0);
+        static pcap_t* get_device(std::string path);
     };
 };
+
+pcap_t* mammoth::MPcapUtil::get_device(std::string path){
+    char errbuf[100];
+	pcap_t *pfile = pcap_open_offline(path.c_str(), errbuf);
+	if (NULL == pfile) {
+		std::cout << "Read pcap file error: " << errbuf << std::endl;
+		return nullptr;
+	}
+	return pfile;
+}
 
 pcap_t* mammoth::MPcapUtil::get_device(int _in_device_num){
     pcap_if_t *alldevs = NULL;

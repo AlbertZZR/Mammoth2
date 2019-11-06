@@ -26,6 +26,9 @@ namespace mammoth{
         void open(int _in_device_num = 1){
             _lidar_device = MPcapUtil::get_device(_in_device_num);
         }
+        void open(std::string path){
+            _lidar_device = MPcapUtil::get_device(path);
+        }
         void get_frame(pcl::PointCloud<pcl::PointXYZRGBA>::Ptr & scene);
     };
 };

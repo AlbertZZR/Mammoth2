@@ -1,6 +1,6 @@
 #include "std_header.h"
 #include "preprocess.hpp"
-#include "lidar.hpp"
+#include "mlidar.hpp"
 #include "mviewer.hpp"
 
 using namespace mammoth;
@@ -16,10 +16,11 @@ int main(){
 
 void main_progress() {
 	PointCloud<PointXYZRGBA>::Ptr cloud(new PointCloud<PointXYZRGBA>());
-	M3DLidar lidar(MLIDAR_TYPE::VEL_VLP16);
+	M3DLidar lidar(MLIDAR_TYPE::VEL_HDL32);
+	//lidar.open();
+	lidar.open("H:/jungongxiangmuyanshou/pcap_ori_data/obtacles.pcap");
 	MPointViewer<PointXYZRGBA> viewer1;
 	viewer1.init();
-	lidar.open();
 	int frame_count = 0;
 	string point_path = "";
 	string result_path = "";
@@ -98,8 +99,6 @@ void main_progress() {
 				}
 			}
 		}
-
-		//±£´æ½á¹û
 		char pointfile_name[50];
 		memset(pointfile_name, 0, 50);
 		sprintf(pointfile_name, "%d.pcd", frame_count);

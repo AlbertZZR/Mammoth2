@@ -1,6 +1,6 @@
 ﻿#include "std_header.h"
 #include "pcl_header.h"
-#include "lidar.hpp"
+#include "mlidar.hpp"
 #include "mviewer.hpp"
 
 using namespace std;
@@ -104,7 +104,7 @@ void papo() {
 	char pointfile_name[50];
 	char resultfile_name[50];
 	M3DLidar lidar(MLIDAR_TYPE::VEL_HDL32);
-	lidar.open();
+	lidar.open("H:\\jungongxiangmuyanshou\\pcap_ori_data\\xiepo.pcap");
 	MPointViewer<PointType> viewer1;
 	viewer1.init();
 	long long frame_count = 0;
